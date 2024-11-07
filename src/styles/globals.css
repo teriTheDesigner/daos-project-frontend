@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --grey-100: #f9f9f9;
+  --grey-200: #f0f0f0;
+  --grey-300: #dddddd;
+  --grey-400: #777777;
+  --dark-blue: #353a5d;
+  --dark-blue-hover: #4a4e6e;
+  --dark-red: #bf1e2e;
+  --yellow: #ff9b19;
+  --blue-badge-text: #4d1fe5;
+  --blue-badge-bg: #4d1fe522;
+  --green-badge-text: #007737;
+  --green-badge-bg: #0077382c;
+}
+
+.font-oswald {
+  @apply font-[var(--font-oswald)];
+}
+
+.font-montserrat {
+  @apply font-[var(--font-montserrat)];
+}
+
+/* Oswald font weights */
+.oswald-light {
+  font-family: var(--font-oswald);
+  font-weight: 200;
+}
+
+.oswald-regular {
+  font-family: var(--font-oswald);
+  font-weight: 400;
+}
+
+.oswald-medium {
+  font-family: var(--font-oswald);
+  font-weight: 500;
+}
+
+.oswald-bold {
+  font-family: var(--font-oswald);
+  font-weight: 700;
+}
+
+/* Montserrat font weights */
+.montserrat-thin {
+  font-family: var(--font-montserrat);
+  font-weight: 100;
+}
+
+.montserrat-light {
+  font-family: var(--font-montserrat);
+  font-weight: 300;
+}
+
+.montserrat-regular {
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+}
+
+.montserrat-medium {
+  font-family: var(--font-montserrat);
+  font-weight: 500;
+}
+
+.montserrat-semibold {
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+}
+
+.montserrat-bold {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+}
+
+.montserrat-extrabold {
+  font-family: var(--font-montserrat);
+  font-weight: 800;
+}
+
+.montserrat-black {
+  font-family: var(--font-montserrat);
+  font-weight: 900;
+}
+
+/* ----------------- Layout ---------------------- */
+
+body {
+  margin: 0;
+}
+
+.outer-grid {
+  display: grid;
+  grid-template-columns: 7% 1fr 7%;
+}
+
+.inner-grid {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  max-width: 1500px;
+}
