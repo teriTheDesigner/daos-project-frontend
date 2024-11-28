@@ -1,4 +1,3 @@
-import styles from "./CreateUserForm.module.css";
 import { useState } from "react";
 
 export default function CreateUserForm() {
@@ -52,10 +51,11 @@ export default function CreateUserForm() {
   return (
     <div className="outer-grid">
       <div className="inner-grid">
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
+        <form onSubmit={handleSubmit}>
+          <div>
             <label htmlFor="username">Username</label>
             <input
+              className="border-2 border-black"
               type="text"
               id="username"
               name="username"
@@ -65,9 +65,10 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <div className={styles.formGroup}>
+          <div>
             <label htmlFor="email">Email</label>
             <input
+              className="border-2 border-black"
               type="email"
               id="email"
               name="email"
@@ -77,9 +78,10 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <div className={styles.formGroup}>
+          <div>
             <label htmlFor="password">Password</label>
             <input
+              className="border-2 border-black"
               type="password"
               id="password"
               name="password"
@@ -89,7 +91,10 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <button type="submit" className={styles.submitButton}>
+          <button
+            className="cursor-pointer bg-black px-4 py-2 text-white"
+            type="submit"
+          >
             Create Account
           </button>
         </form>

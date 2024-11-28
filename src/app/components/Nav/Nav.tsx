@@ -21,19 +21,24 @@ export default function Nav() {
         </p>
       </div>
       <div className={styles.navLinksDiv}>
-        <a className={`${styles.navLink} montserrat-bold`} href="/opslag">
+        {/* <a className={`${styles.navLink} montserrat-bold`} href="/opslag">
           Opslag
         </a>
-        <a className={`${styles.navLink} montserrat-bold`} href="/profil">
+        <a className={`${styles.navLink} montserrat-bold`} href="/profile">
           Profil
+        </a> */}
+        <a className={`${styles.navLink} montserrat-bold`} href="/login">
+          Log ind
         </a>
-        <PrimaryButton color="blue" size="medium" onClick={CreateUser}>
-          Opret bruger{" "}
+        <a className={`${styles.navLink} montserrat-bold`} href="/signup">
+          Sign up
+        </a>
+        {/* <PrimaryButton color="blue" size="medium" onClick={CreateUser}>
+          Opret bruger
         </PrimaryButton>
         <PrimaryButton color="white" size="medium" onClick={LogIn}>
-          {" "}
           Log ind
-        </PrimaryButton>
+        </PrimaryButton> */}
       </div>
     </nav>
   );

@@ -10,8 +10,6 @@ export default function HomePage() {
   return (
     <div>
       <>
-        <LoginForm />
-        {/* <CreateUserForm /> */}
         <IndexHeader />
         <UserReviews />
         <LatestPostsSection />

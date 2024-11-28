@@ -85,6 +85,7 @@ export default function LoginForm() {
           <div>
             <label htmlFor="name">Username</label>
             <input
+              className="border-2 border-black"
               type="text"
               id="name"
               name="name"
@@ -97,6 +98,7 @@ export default function LoginForm() {
           <div>
             <label htmlFor="password">Password</label>
             <input
+              className="border-2 border-black"
               type="password"
               id="password"
               name="password"
@@ -108,7 +110,12 @@ export default function LoginForm() {
 
           {error && <p>{error}</p>}
 
-          <button type="submit">Login</button>
+          <button
+            className="cursor-pointer bg-black px-4 py-2 text-white"
+            type="submit"
+          >
+            Login
+          </button>
         </form>
 
         {profile && (
