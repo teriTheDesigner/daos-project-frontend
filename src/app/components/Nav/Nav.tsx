@@ -36,9 +36,17 @@ export default function Nav() {
               Log ind
             </a>
           ) : (
-            <PrimaryButton color="white" size="medium" onClick={handleLogout}>
-              Log out
-            </PrimaryButton>
+            <div>
+              <a
+                className={`${styles.navLink} montserrat-bold mr-6`}
+                href="/ensembles"
+              >
+                Ensembles
+              </a>
+              <PrimaryButton color="white" size="medium" onClick={handleLogout}>
+                Log out
+              </PrimaryButton>{" "}
+            </div>
           )}
         </div>
       </div>
