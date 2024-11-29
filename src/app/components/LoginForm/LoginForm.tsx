@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Profile = {
   name: string;
@@ -12,6 +13,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [profile, setProfile] = useState<Profile | null>(null);
+  const router = useRouter();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -72,6 +74,7 @@ export default function LoginForm() {
       sessionStorage.setItem("token", data.access_token);
 
       await fetchUserProfile();
+      router.push("/");
     } catch (error) {
       setError((error as Error).message);
       console.error("Login failed:", error);
@@ -79,10 +82,22 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="outer-grid">
+    <div className="outer-grid montserrat-regular">
       <div className="inner-grid">
-        <form onSubmit={handleSubmit}>
-          <div>
+        <h1 className="montserrat-bold col-start-1 col-end-13 my-8 text-2xl">
+          Log In
+        </h1>
+        <p className="col-start-1 col-end-7 mb-8">
+          Welcome to our platform! Please log in to access your account and
+          unlock the full experience. By logging in, you'll gain the ability to
+          create new ensembles, collaborate with others, and join existing
+          groups.
+        </p>
+        <form
+          className="col-start-1 col-end-4 flex flex-col gap-4"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex flex-col gap-2">
             <label htmlFor="name">Username</label>
             <input
               className="border-2 border-black"
@@ -95,7 +110,7 @@ export default function LoginForm() {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-2">
             <label htmlFor="password">Password</label>
             <input
               className="border-2 border-black"
@@ -118,11 +133,11 @@ export default function LoginForm() {
           </button>
         </form>
 
-        {profile && (
+        {/* {profile && (
           <div>
             <h2>Welcome, {profile.name}</h2>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

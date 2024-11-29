@@ -10,11 +10,11 @@ export default function HomePage() {
   return (
     <div>
       <>
+        <Nav />
         <IndexHeader />
         <UserReviews />
         <LatestPostsSection />
         <FeedbackBanner />
-        <Footer />
       </>
     </div>
   );

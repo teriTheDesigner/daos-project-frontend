@@ -6,6 +6,7 @@ import { type Metadata } from "next";
 import { Oswald } from "next/font/google";
 import { Montserrat } from "next/font/google";
 import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -30,9 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${oswald.variable} ${montserrat.variable}`}>
       <body>
-        {" "}
-        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );

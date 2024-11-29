@@ -1,15 +1,20 @@
 "use client";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import styles from "./Nav.module.css";
-
-function CreateUser() {
-  alert("Hello from Opret bruger");
-}
-function LogIn() {
-  alert("Hello from Opret bruger");
-}
+import { useState, useEffect } from "react";
 
 export default function Nav() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
   return (
     <nav className={styles.nav}>
       <div className={styles.logoDiv}>
@@ -21,24 +26,21 @@ export default function Nav() {
         </p>
       </div>
       <div className={styles.navLinksDiv}>
-        {/* <a className={`${styles.navLink} montserrat-bold`} href="/opslag">
-          Opslag
-        </a>
-        <a className={`${styles.navLink} montserrat-bold`} href="/profile">
-          Profil
-        </a> */}
-        <a className={`${styles.navLink} montserrat-bold`} href="/login">
-          Log ind
-        </a>
-        <a className={`${styles.navLink} montserrat-bold`} href="/signup">
-          Sign up
-        </a>
-        {/* <PrimaryButton color="blue" size="medium" onClick={CreateUser}>
-          Opret bruger
-        </PrimaryButton>
-        <PrimaryButton color="white" size="medium" onClick={LogIn}>
-          Log ind
-        </PrimaryButton> */}
+        <div className={styles.navLinksDiv}>
+          <a className={`${styles.navLink} montserrat-bold`} href="/signup">
+            Sign up
+          </a>
+
+          {!isLoggedIn ? (
+            <a className={`${styles.navLink} montserrat-bold`} href="/login">
+              Log ind
+            </a>
+          ) : (
+            <PrimaryButton color="white" size="medium" onClick={handleLogout}>
+              Log out
+            </PrimaryButton>
+          )}
+        </div>
       </div>
     </nav>
   );

@@ -1,9 +1,11 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function CreateUserForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleNameChange = (e: any) => setName(e.target.value);
   const handleEmailChange = (e: any) => setEmail(e.target.value);
@@ -23,6 +25,8 @@ export default function CreateUserForm() {
     const result = await saveUser(user);
     if (result.error) {
       console.error(result.error);
+    } else {
+      router.push("/login");
     }
   };
 
@@ -41,6 +45,7 @@ export default function CreateUserForm() {
       if (!response.ok) {
         throw new Error(json.message || "Failed to create user");
       }
+
       return json;
     } catch (error) {
       console.error(error);
@@ -49,10 +54,20 @@ export default function CreateUserForm() {
   }
 
   return (
-    <div className="outer-grid">
+    <div className="outer-grid montserrat-regular">
       <div className="inner-grid">
-        <form onSubmit={handleSubmit}>
-          <div>
+        <h1 className="montserrat-bold col-start-1 col-end-13 my-8 text-2xl">
+          Sign up
+        </h1>
+        <p className="col-start-1 col-end-7 mb-8">
+          Welcome to our platform! Join our community and take the first step
+          toward creating and discovering ensembles.
+        </p>
+        <form
+          className="col-start-1 col-end-4 flex flex-col gap-4"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex flex-col gap-2">
             <label htmlFor="username">Username</label>
             <input
               className="border-2 border-black"
@@ -65,7 +80,7 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-2">
             <label htmlFor="email">Email</label>
             <input
               className="border-2 border-black"
@@ -78,7 +93,7 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-2">
             <label htmlFor="password">Password</label>
             <input
               className="border-2 border-black"

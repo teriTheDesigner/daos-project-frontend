@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className={`${styles.footer} outer-grid`}>
+    <footer className={`${styles.footer} outer-grid mt-12`}>
       <div className={`inner-grid`}>
         <h4 className={`${styles.h4} oswald-medium`}>MUSIK SAMSPIL</h4>
         <div className={styles.layout}>
