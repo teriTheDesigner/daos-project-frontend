@@ -56,10 +56,16 @@ export default function CreateEnsemblePage() {
   return (
     <div>
       <Nav />
-      <div className="outer-grid montserrat-regular">
-        <div className="inner-grid">
-          <h1 className="montserrat-bold col-start-1 col-end-13 my-8 text-2xl">
-            Ensembles
+      <div
+        className="outer-grid montserrat-regular"
+        style={{ backgroundColor: "var(--grey-200" }}
+      >
+        <div className="inner-grid my-12">
+          <h1
+            className="oswald-medium col-start-4 col-end-10 my-4 text-4xl"
+            style={{ color: "var(--dark-blue)" }}
+          >
+            Create Ensemble
           </h1>
           <form
             className="col-start-4 col-end-10 flex flex-col gap-4"

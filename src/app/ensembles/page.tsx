@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Nav from "../components/Nav/Nav";
 import { useRouter } from "next/navigation";
 import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
+import PostingCard from "../components/PostingCard/PostingCard";
 
 interface Ensemble {
   _id: string;
@@ -65,7 +66,10 @@ export default function EnsemblesPage() {
       <Nav />
       <div className="outer-grid montserrat-regular">
         <div className="inner-grid">
-          <h1 className="montserrat-bold col-start-1 col-end-13 my-8 text-2xl">
+          <h1
+            className="oswald-medium col-start-1 col-end-13 mb-4 mt-12 text-4xl"
+            style={{ color: "var(--dark-blue)" }}
+          >
             Ensembles
           </h1>
           {!isLoggedIn ? (
@@ -80,19 +84,24 @@ export default function EnsemblesPage() {
             </div>
           ) : (
             <div className="col-start-1 col-end-13">
+              <p className="my-4">
+                {ensembles.length > 0 && ensembles.length} Ensambles found
+              </p>
+
               <PrimaryButton onClick={createEnsamble} color="blue" size="large">
                 Create Ensemble
               </PrimaryButton>
               <div className="grid grid-cols-3 gap-6 py-12">
                 {ensembles.length > 0 ? (
                   ensembles.map((ensemble) => (
-                    <div
-                      className="rounded-md border border-black p-4"
+                    <PostingCard
                       key={ensemble._id}
-                    >
-                      <p>Title: {ensemble.name}</p>
-                      <p>Description: {ensemble.description}</p>
-                    </div>
+                      title={ensemble.description}
+                      author={ensemble.name}
+                      instrument="Piano"
+                      date="2021-09-01"
+                      location="Aarhus"
+                    />
                   ))
                 ) : (
                   <p>No ensembles available.</p>
