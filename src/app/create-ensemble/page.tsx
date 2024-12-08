@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../components/Nav/Nav";
+import { useRouter } from "next/navigation";
+import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
 
 export default function CreateEnsemblePage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -53,6 +62,10 @@ export default function CreateEnsemblePage() {
     }
   };
 
+  const handleLogin = () => {
+    router.push("/login");
+  };
+
   return (
     <div>
       <Nav />
@@ -62,48 +75,58 @@ export default function CreateEnsemblePage() {
       >
         <div className="inner-grid my-12">
           <h1
-            className="oswald-medium col-start-4 col-end-10 my-4 text-4xl"
+            className="oswald-medium col-start-4 col-end-10 my-4 justify-self-center text-4xl"
             style={{ color: "var(--dark-blue)" }}
           >
             Create Ensemble
           </h1>
-          <form
-            className="col-start-4 col-end-10 flex flex-col gap-4"
-            onSubmit={handleSubmit}
-          >
-            <div className="flex flex-col gap-2">
-              <label htmlFor="name">Name</label>
-              <input
-                className="border-2 border-black"
-                type="text"
-                id="name"
-                name="name"
-                value={name}
-                onChange={handleNameChange}
-                required
-              />
-            </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="description">Description</label>
-              <input
-                className="border-2 border-black"
-                type="text"
-                id="description"
-                name="description"
-                value={description}
-                onChange={handleDescriptionChange}
-                required
-              />
+          {!isLoggedIn ? (
+            <div className="col-start-4 col-end-10 flex flex-col items-center gap-4">
+              <p>Please login to create an ensemble.</p>
+              <PrimaryButton color="blue" size="large" onClick={handleLogin}>
+                Log in
+              </PrimaryButton>
             </div>
-
-            <button
-              className="cursor-pointer bg-black px-4 py-2 text-white"
-              type="submit"
+          ) : (
+            <form
+              className="col-start-4 col-end-10 flex flex-col gap-4"
+              onSubmit={handleSubmit}
             >
-              Create Ensemble
-            </button>
-          </form>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name">Name</label>
+                <input
+                  className="border-2 border-black"
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={name}
+                  onChange={handleNameChange}
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="description">Description</label>
+                <input
+                  className="border-2 border-black"
+                  type="text"
+                  id="description"
+                  name="description"
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  required
+                />
+              </div>
+
+              <button
+                className="cursor-pointer bg-black px-4 py-2 text-white"
+                type="submit"
+              >
+                Create Ensemble
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>

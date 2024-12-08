@@ -75,17 +75,16 @@ export default function EnsemblesPage() {
           {!isLoggedIn ? (
             <div className="col-start-1 col-end-5 my-8 flex flex-col gap-8">
               <p>Please login to create and join ensembles</p>
-              <button
-                className="cursor-pointer bg-blue-500 px-4 py-2 text-white"
-                onClick={handleLogin}
-              >
+              <PrimaryButton color="blue" size="large" onClick={handleLogin}>
                 Log in
-              </button>
+              </PrimaryButton>
             </div>
           ) : (
             <div className="col-start-1 col-end-13">
               <p className="my-4">
-                {ensembles.length > 0 && ensembles.length} Ensambles found
+                {ensembles.length > 0
+                  ? `${ensembles.length} Ensembles found`
+                  : "No Ensembles found"}
               </p>
 
               <PrimaryButton onClick={createEnsamble} color="blue" size="large">
