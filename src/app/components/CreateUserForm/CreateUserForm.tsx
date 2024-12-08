@@ -20,8 +20,6 @@ export default function CreateUserForm() {
       password: password,
     };
 
-    console.log("user info", user);
-
     const result = await saveUser(user);
     if (result.error) {
       console.error(result.error);
