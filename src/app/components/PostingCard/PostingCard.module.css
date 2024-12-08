@@ -10,6 +10,8 @@
   color: var(--grey-400);
   margin-block-start: 1em;
   margin-block-end: 0em;
+  display: flex;
+  align-items: center;
 }
 
 .info {

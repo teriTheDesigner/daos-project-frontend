@@ -2,6 +2,7 @@
   font-size: 38px;
   grid-column: 1/13;
   color: var(--dark-blue);
+  margin-bottom: 1rem;
 }
 
 .section {

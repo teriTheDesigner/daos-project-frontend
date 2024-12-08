@@ -1,13 +1,24 @@
 import styles from "./PostingCard.module.css";
 
-export default function PostingCard() {
+interface PostingCardProps {
+  title: string;
+  author: string;
+  instrument: string;
+  date: string;
+  location: string;
+}
+
+export default function PostingCard({
+  title,
+  author,
+  instrument,
+  date,
+  location,
+}: PostingCardProps) {
   return (
     <div className={`${styles.card} `}>
       <div className={`${styles.cardLayout} `}>
-        <h6 className={`${styles.h6} montserrat-bold`}>
-          Violinist søges som afløser til C. Debussy projekt med orkester i
-          Århus
-        </h6>
+        <h6 className={`${styles.h6} montserrat-bold`}>{title}</h6>
         <div className={`${styles.info} montserrat-regular`}>
           <p>
             <svg
@@ -23,7 +34,7 @@ export default function PostingCard() {
                 fill="#777"
               />
             </svg>
-            &nbsp;&nbsp;&nbsp;Aarhus Amatørsymfoniorkester
+            &nbsp;&nbsp;&nbsp;{author}
           </p>
           <p>
             <svg
@@ -39,12 +50,12 @@ export default function PostingCard() {
                 fill="#777"
               />
             </svg>
-            &nbsp;&nbsp;&nbsp;Violin
+            &nbsp;&nbsp;&nbsp;{instrument}
           </p>
         </div>
       </div>
       <p className={`${styles.dateLocation} montserrat-regular`}>
-        3. marts • 8100 Aarhus C
+        {date} • {location}
       </p>
     </div>
   );

@@ -17,12 +17,14 @@ export default function ReviewCard({
     <div className={styles.card}>
       <div className={styles.review}>
         <p className={`${styles.reviewText} montserrat-light`}>
-          <span className={`${styles.quotes} ${styles.quotesTop}oswald-medium`}>
+          <span
+            className={`${styles.quotes} ${styles.quotesTop} oswald-medium`}
+          >
             “
           </span>
           {reviewText}
           <span
-            className={`${styles.quotes} ${styles.quotesBottom}oswald-medium`}
+            className={`${styles.quotes} ${styles.quotesBottom} oswald-medium`}
           >
             ”
           </span>
@@ -36,7 +38,9 @@ export default function ReviewCard({
         />
 
         <p className={`${styles.authorName} montserrat-bold`}>{authorName}</p>
-        <p className={styles.authorSubtitle}>{authorSubtitle}</p>
+        <p className={`${styles.authorSubtitle} oswald-medium`}>
+          {authorSubtitle}
+        </p>
       </div>
     </div>
   );
