@@ -93,7 +93,7 @@ export default function CreateEnsemblePage() {
       <Nav />
       <div
         className="outer-grid montserrat-regular"
-        style={{ backgroundColor: "var(--grey-200" }}
+        style={{ backgroundColor: "var(--grey-100" }}
       >
         <div className="inner-grid my-12">
           <h1
@@ -112,7 +112,7 @@ export default function CreateEnsemblePage() {
             </div>
           ) : (
             <form
-              className="col-start-4 col-end-10 flex flex-col gap-4"
+              className="col-start-4 col-end-10 flex flex-col gap-8"
               onSubmit={handleSubmit}
             >
               <div className="input-field">
@@ -121,6 +121,7 @@ export default function CreateEnsemblePage() {
                   type="text"
                   id="title"
                   name="title"
+                  placeholder="Titel (max 120 karakterer)"
                   value={title}
                   onChange={handleTitleChange}
                   required
@@ -132,6 +133,7 @@ export default function CreateEnsemblePage() {
                   type="text"
                   id="instrument"
                   name="instrument"
+                  placeholder="Vælg instrument"
                   value={instrument}
                   onChange={handleInstrumentChange}
                   required
@@ -139,9 +141,15 @@ export default function CreateEnsemblePage() {
               </div>
               <div className="input-field">
                 <label htmlFor="description">Description</label>
+                <p>
+                  Her kan du beskrive detaljer om hvad eller hvem du søger med
+                  dette opslag. Klik på spørgsmålstegnet hvis du har brug for
+                  hjælp.
+                </p>
                 <input
                   type="text"
                   id="description"
+                  placeholder="Skriv en beskrivelse …"
                   name="description"
                   value={description}
                   onChange={handleDescriptionChange}
@@ -155,6 +163,7 @@ export default function CreateEnsemblePage() {
                   type="text"
                   id="city"
                   name="city"
+                  placeholder="By, postnr. eller adresse"
                   value={city}
                   onChange={handleCityChange}
                   required
@@ -163,9 +172,11 @@ export default function CreateEnsemblePage() {
 
               <div className="input-field">
                 <label htmlFor="ensembleName">Ensemble name</label>
+                <p>Hvis ensemblet eller gruppen har et navn.</p>
                 <input
                   type="text"
                   id="ensembleName"
+                  placeholder="Skriv navnet her"
                   name="ensembleName"
                   value={ensembleName}
                   onChange={handleEnsembleNameChange}
