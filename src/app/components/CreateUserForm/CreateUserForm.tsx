@@ -52,9 +52,12 @@ export default function CreateUserForm() {
   }
 
   return (
-    <div className="outer-grid montserrat-regular">
+    <div className="outer-grid montserrat-regular py-12">
       <div className="inner-grid">
-        <h1 className="montserrat-bold col-start-1 col-end-13 my-8 text-2xl">
+        <h1
+          className="oswald-medium col-start-1 col-end-13 my-8 text-4xl"
+          style={{ color: "var(--dark-blue)" }}
+        >
           Sign up
         </h1>
         <p className="col-start-1 col-end-7 mb-8">
