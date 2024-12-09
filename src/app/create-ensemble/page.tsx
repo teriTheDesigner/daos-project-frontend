@@ -7,8 +7,11 @@ import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
 
 export default function CreateEnsemblePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [instrument, setInstrument] = useState("");
+  const [city, setCity] = useState("");
+  const [ensembleName, setEnsembleName] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -16,12 +19,24 @@ export default function CreateEnsemblePage() {
     setIsLoggedIn(!!token);
   }, []);
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
   };
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
+  };
+
+  const handleInstrumentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInstrument(e.target.value);
+  };
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCity(e.target.value);
+  };
+
+  const handleEnsembleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEnsembleName(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,8 +49,11 @@ export default function CreateEnsemblePage() {
     }
 
     const ensembleData = {
-      name,
       description,
+      title,
+      instrument,
+      city,
+      ensembleName,
     };
 
     try {
@@ -50,9 +68,13 @@ export default function CreateEnsemblePage() {
 
       const data = await response.json();
       if (response.ok) {
+        console.log("Ensemble created:", data);
         alert("Ensemble created successfully!");
-        setName("");
+        setTitle("");
         setDescription("");
+        setInstrument("");
+        setCity("");
+        setEnsembleName("");
       } else {
         alert(`Error: ${data.message}`);
       }
@@ -94,17 +116,27 @@ export default function CreateEnsemblePage() {
               onSubmit={handleSubmit}
             >
               <div className="input-field">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="title">Title</label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={name}
-                  onChange={handleNameChange}
+                  id="title"
+                  name="title"
+                  value={title}
+                  onChange={handleTitleChange}
                   required
                 />
               </div>
-
+              <div className="input-field">
+                <label htmlFor="instrument">Instrument</label>
+                <input
+                  type="text"
+                  id="instrument"
+                  name="instrument"
+                  value={instrument}
+                  onChange={handleInstrumentChange}
+                  required
+                />
+              </div>
               <div className="input-field">
                 <label htmlFor="description">Description</label>
                 <input
@@ -113,6 +145,30 @@ export default function CreateEnsemblePage() {
                   name="description"
                   value={description}
                   onChange={handleDescriptionChange}
+                  required
+                />
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="city">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  value={city}
+                  onChange={handleCityChange}
+                  required
+                />
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="ensembleName">Ensemble name</label>
+                <input
+                  type="text"
+                  id="ensembleName"
+                  name="ensembleName"
+                  value={ensembleName}
+                  onChange={handleEnsembleNameChange}
                   required
                 />
               </div>
