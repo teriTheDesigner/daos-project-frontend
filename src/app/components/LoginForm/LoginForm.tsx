@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 type Profile = {
   name: string;
@@ -82,9 +83,12 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="outer-grid montserrat-regular">
+    <div className="outer-grid montserrat-regular py-12">
       <div className="inner-grid">
-        <h1 className="montserrat-bold col-start-1 col-end-13 my-8 text-2xl">
+        <h1
+          className="oswald-medium col-start-1 col-end-13 my-8 text-4xl"
+          style={{ color: "var(--dark-blue)" }}
+        >
           Log In
         </h1>
         <p className="col-start-1 col-end-7 mb-8">
@@ -97,10 +101,9 @@ export default function LoginForm() {
           className="col-start-1 col-end-4 flex flex-col gap-4"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col gap-2">
+          <div className="input-field">
             <label htmlFor="name">Username</label>
             <input
-              className="border-2 border-black"
               type="text"
               id="name"
               name="name"
@@ -110,10 +113,9 @@ export default function LoginForm() {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="input-field">
             <label htmlFor="password">Password</label>
             <input
-              className="border-2 border-black"
               type="password"
               id="password"
               name="password"
@@ -125,12 +127,14 @@ export default function LoginForm() {
 
           {error && <p>{error}</p>}
 
-          <button
-            className="cursor-pointer bg-black px-4 py-2 text-white"
+          <PrimaryButton
+            color="blue"
+            className="mt-4"
+            size="large"
             type="submit"
           >
             Login
-          </button>
+          </PrimaryButton>
         </form>
 
         {/* {profile && (

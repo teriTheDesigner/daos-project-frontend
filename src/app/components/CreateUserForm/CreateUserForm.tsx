@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 export default function CreateUserForm() {
   const [name, setName] = useState("");
@@ -68,10 +69,9 @@ export default function CreateUserForm() {
           className="col-start-1 col-end-4 flex flex-col gap-4"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col gap-2">
+          <div className="input-field">
             <label htmlFor="username">Username</label>
             <input
-              className="border-2 border-black"
               type="text"
               id="username"
               name="username"
@@ -81,10 +81,9 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="input-field">
             <label htmlFor="email">Email</label>
             <input
-              className="border-2 border-black"
               type="email"
               id="email"
               name="email"
@@ -94,10 +93,9 @@ export default function CreateUserForm() {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="input-field">
             <label htmlFor="password">Password</label>
             <input
-              className="border-2 border-black"
               type="password"
               id="password"
               name="password"
@@ -106,13 +104,14 @@ export default function CreateUserForm() {
               required
             />
           </div>
-
-          <button
-            className="cursor-pointer bg-black px-4 py-2 text-white"
+          <PrimaryButton
+            color="blue"
+            className="mt-4"
+            size="large"
             type="submit"
           >
             Create Account
-          </button>
+          </PrimaryButton>
         </form>
       </div>
     </div>
