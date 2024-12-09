@@ -93,10 +93,9 @@ export default function CreateEnsemblePage() {
               className="col-start-4 col-end-10 flex flex-col gap-4"
               onSubmit={handleSubmit}
             >
-              <div className="flex flex-col gap-2">
+              <div className="input-field">
                 <label htmlFor="name">Name</label>
                 <input
-                  className="border-2 border-black"
                   type="text"
                   id="name"
                   name="name"
@@ -106,10 +105,9 @@ export default function CreateEnsemblePage() {
                 />
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="input-field">
                 <label htmlFor="description">Description</label>
                 <input
-                  className="border-2 border-black"
                   type="text"
                   id="description"
                   name="description"
@@ -119,12 +117,14 @@ export default function CreateEnsemblePage() {
                 />
               </div>
 
-              <button
-                className="cursor-pointer bg-black px-4 py-2 text-white"
+              <PrimaryButton
+                color="blue"
+                className="mt-4"
+                size="large"
                 type="submit"
               >
                 Create Ensemble
-              </button>
+              </PrimaryButton>
             </form>
           )}
         </div>

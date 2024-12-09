@@ -6,7 +6,7 @@ import styles from "./PrimaryButton.module.css";
 import { cn } from "~/lib/util";
 
 type PrimaryButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   color: "blue" | "white";
   size: "medium" | "large";
 } & ComponentPropsWithoutRef<"button">;
