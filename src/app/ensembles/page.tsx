@@ -5,6 +5,7 @@ import Nav from "../components/Nav/Nav";
 import { useRouter } from "next/navigation";
 import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
 import PostingCard from "../components/PostingCard/PostingCard";
+import Modal from "../components/Modal/Modal";
 
 interface Ensemble {
   _id: string;
@@ -16,6 +17,15 @@ export default function EnsemblesPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [ensembles, setEnsembles] = useState<Ensemble[]>([]);
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleJoin = () => {
+    alert("You clicked Join!");
+    closeModal();
+  };
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -93,14 +103,15 @@ export default function EnsemblesPage() {
               <div className="grid grid-cols-3 gap-6 py-12">
                 {ensembles.length > 0 ? (
                   ensembles.map((ensemble) => (
-                    <PostingCard
-                      key={ensemble._id}
-                      title={ensemble.description}
-                      author={ensemble.name}
-                      instrument="Piano"
-                      date="2021-09-01"
-                      location="Aarhus"
-                    />
+                    <div key={ensemble._id} onClick={openModal}>
+                      <PostingCard
+                        title={ensemble.description}
+                        author={ensemble.name}
+                        instrument="Piano"
+                        date="2021-09-01"
+                        location="Aarhus"
+                      />{" "}
+                    </div>
                   ))
                 ) : (
                   <p>No ensembles available.</p>
@@ -109,7 +120,8 @@ export default function EnsemblesPage() {
             </div>
           )}
         </div>
-      </div>
+      </div>{" "}
+      <Modal isOpen={isModalOpen} onClose={closeModal} onJoin={handleJoin} />
     </div>
   );
 }
