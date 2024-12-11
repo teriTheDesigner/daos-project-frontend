@@ -1,11 +1,12 @@
 import styles from "./PostingCard.module.css";
 
 interface PostingCardProps {
-  title: string;
-  author: string;
-  instrument: string;
-  date: string;
-  location: string;
+  title?: string;
+  author?: string;
+  instrument?: string;
+  date?: string;
+  location?: string;
+  description?: string;
 }
 
 export default function PostingCard({
@@ -14,11 +15,17 @@ export default function PostingCard({
   instrument,
   date,
   location,
+  description,
 }: PostingCardProps) {
   return (
     <div className={`${styles.card} `}>
       <div className={`${styles.cardLayout} `}>
         <h6 className={`${styles.h6} montserrat-bold`}>{title}</h6>
+        {description && (
+          <p className="montserrat-regular mt-1 text-xs text-gray-400">
+            {description}
+          </p>
+        )}
         <div className={`${styles.info} montserrat-regular`}>
           <p>
             <svg

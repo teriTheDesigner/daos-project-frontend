@@ -9,8 +9,11 @@ import Modal from "../components/Modal/Modal";
 
 interface Ensemble {
   _id: string;
-  name: string;
+  title: string;
   description: string;
+  city: string;
+  ensembleName: string;
+  instrument: string;
 }
 
 export default function EnsemblesPage() {
@@ -18,22 +21,84 @@ export default function EnsemblesPage() {
   const [ensembles, setEnsembles] = useState<Ensemble[]>([]);
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEnsembleId, setSelectedEnsembleId] = useState<string | null>(
+    null,
+  );
+  const [userId, setUserId] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-  const openModal = () => setIsModalOpen(true);
+  const openModal = (ensembleId: string) => {
+    setSelectedEnsembleId(ensembleId);
+    setIsModalOpen(true);
+  };
   const closeModal = () => setIsModalOpen(false);
 
-  const handleJoin = () => {
-    alert("You clicked Join!");
-    closeModal();
-  };
-
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    setIsLoggedIn(!!token);
-    if (token) {
+    const storedToken = sessionStorage.getItem("token");
+    setToken(storedToken);
+    setIsLoggedIn(!!storedToken);
+
+    if (storedToken) {
+      fetchUserProfile(storedToken);
+
       fetchEnsembles();
     }
   }, []);
+
+  const fetchUserProfile = async (token: string) => {
+    try {
+      const response = await fetch("http://localhost:3000/auth/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("User profile data", data);
+        setUserId(data.id);
+      } else {
+        const errorData = await response.json();
+        alert(`Error fetching user profile: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
+  const handleJoin = async () => {
+    if (!selectedEnsembleId || !userId || !token) {
+      alert("You must be logged in to join an ensemble.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/ensembles/${selectedEnsembleId}/join`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId }),
+        },
+      );
+
+      if (response.ok) {
+        alert("Successfully joined the ensemble!");
+        closeModal();
+        fetchEnsembles();
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error("Error joining ensemble:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
 
   const fetchEnsembles = async () => {
     const token = sessionStorage.getItem("token");
@@ -103,14 +168,18 @@ export default function EnsemblesPage() {
               <div className="grid grid-cols-3 gap-6 py-12">
                 {ensembles.length > 0 ? (
                   ensembles.map((ensemble) => (
-                    <div key={ensemble._id} onClick={openModal}>
+                    <div
+                      key={ensemble._id}
+                      onClick={() => openModal(ensemble._id)}
+                    >
                       <PostingCard
-                        title={ensemble.description}
-                        author={ensemble.name}
-                        instrument="Piano"
-                        date="2021-09-01"
-                        location="Aarhus"
-                      />{" "}
+                        title={ensemble.title}
+                        description={ensemble.description}
+                        author={ensemble.ensembleName}
+                        instrument={ensemble.instrument}
+                        date="09-01-2025"
+                        location={ensemble.city}
+                      />
                     </div>
                   ))
                 ) : (
