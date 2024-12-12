@@ -2,7 +2,6 @@
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import styles from "./Nav.module.css";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Nav() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
