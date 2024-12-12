@@ -16,6 +16,13 @@ interface Ensemble {
   instrument: string;
 }
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  ensembles?: string[];
+}
+
 export default function EnsemblesPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [ensembles, setEnsembles] = useState<Ensemble[]>([]);
@@ -54,8 +61,7 @@ export default function EnsemblesPage() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("User profile data", data);
+        const data: User = await response.json();
         setUserId(data.id);
       } else {
         const errorData = await response.json();
