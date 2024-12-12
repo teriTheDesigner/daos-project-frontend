@@ -4,16 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
-type Profile = {
-  name: string;
-  email: string;
-};
-
 export default function LoginForm() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [profile, setProfile] = useState<Profile | null>(null);
   const router = useRouter();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,35 +16,6 @@ export default function LoginForm() {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-  };
-
-  const fetchUserProfile = async () => {
-    const token = sessionStorage.getItem("token");
-
-    if (!token) {
-      setError("No token found. Please log in first.");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:3000/auth/profile", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch profile data");
-      }
-
-      const userData = await response.json();
-      setProfile(userData);
-      console.log("User profile:", userData);
-    } catch (error) {
-      setError((error as Error).message);
-      console.error("Profile fetch failed:", error);
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,12 +35,9 @@ export default function LoginForm() {
 
       const data = await response.json();
 
-      console.log("Login successful:", data);
-
       sessionStorage.setItem("token", data.access_token);
 
-      await fetchUserProfile();
-      router.push("/");
+      router.push("/profile");
     } catch (error) {
       setError((error as Error).message);
       console.error("Login failed:", error);
@@ -136,12 +98,6 @@ export default function LoginForm() {
             Login
           </PrimaryButton>
         </form>
-
-        {/* {profile && (
-          <div>
-            <h2>Welcome, {profile.name}</h2>
-          </div>
-        )} */}
       </div>
     </div>
   );
