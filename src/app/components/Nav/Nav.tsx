@@ -27,6 +27,18 @@ export default function Nav() {
       </div>
       <div className={styles.navLinksDiv}>
         <div className={styles.navLinksDiv}>
+          <a
+            className={`${styles.navLink} montserrat-bold mr-6`}
+            href="/ensembles"
+          >
+            Ensembles
+          </a>
+          <a
+            className={`${styles.navLink} montserrat-bold mr-6`}
+            href="/profile"
+          >
+            Profile
+          </a>
           <a className={`${styles.navLink} montserrat-bold`} href="/signup">
             Sign up
           </a>
@@ -36,17 +48,9 @@ export default function Nav() {
               Log ind
             </a>
           ) : (
-            <div>
-              <a
-                className={`${styles.navLink} montserrat-bold mr-6`}
-                href="/ensembles"
-              >
-                Ensembles
-              </a>
-              <PrimaryButton color="white" size="medium" onClick={handleLogout}>
-                Log out
-              </PrimaryButton>{" "}
-            </div>
+            <PrimaryButton color="white" size="medium" onClick={handleLogout}>
+              Log out
+            </PrimaryButton>
           )}
         </div>
       </div>
