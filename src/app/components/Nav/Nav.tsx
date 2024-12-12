@@ -2,6 +2,7 @@
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import styles from "./Nav.module.css";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Nav() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,11 +10,13 @@ export default function Nav() {
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
-  }, []);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     setIsLoggedIn(false);
+
+    window.location.reload();
   };
   return (
     <nav className={styles.nav}>
