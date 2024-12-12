@@ -92,10 +92,10 @@ export default function CreateEnsemblePage() {
     <div>
       <Nav />
       <div
-        className="outer-grid montserrat-regular"
+        className="outer-grid montserrat-regular py-12"
         style={{ backgroundColor: "var(--grey-100" }}
       >
-        <div className="inner-grid my-12">
+        <div className="inner-grid">
           <h1
             className="oswald-medium col-start-4 col-end-10 my-4 justify-self-center text-4xl"
             style={{ color: "var(--dark-blue)" }}
